@@ -1,5 +1,5 @@
 class Agenda {
-    constructor(nome, tel, celular, URL, email, CEP, cidade, estado, github) {
+    constructor(nome, tel, celular, URL, email, CEP, cidade, Instagram, github) {
         this.nome = nome;
         this.tel = tel;
         this.celular = celular;
@@ -11,7 +11,6 @@ class Agenda {
         this.github = github;
         this.age = this.calculateAge();
         this.zodiacSign = this.getZodiacSign();
-        this.possibleClient = this.isPossibleClient();
         console.log("Passou pelo construtor da class Agenda")
     }
     calculateAge() {
@@ -128,7 +127,7 @@ function showRegister() {
     console.log("Passou pela funçao showRegiser()");
 }
 
-function dateinPTBR(params) {
+function dateinPTBR() {
     console.log("Passou pela funcao dateinPTBR()");
 
     let dateArray = date.split("-");
@@ -137,7 +136,7 @@ function dateinPTBR(params) {
 }
 function gerarLinkWhatsaap() {
     let link = "https://api.whatsapp.com/send"
-        + telefone;
+        + tel;
     return link;
 }
 
@@ -162,42 +161,6 @@ function formatedcelular(celular) {
         + celularArray[9] + celularArray[10];
     return celularFormated;
 }
-
-function valida_cep() {
-    console.log("Passou pela funcao valida_cep()");
-
-    var numeros, digitos, soma, i, resultado, digitos_iguais
-    digitos_iguais = 1;
-    if (CEP.length < 11)
-        return false;
-    for (i = 0; i < CEP.length - 1; i++)
-        if (CEP.charAt(i) != CEP.charAt(i + 1)) {
-            digitos_iguais = 0;
-            break;
-        }
-    if (!digitos_iguais) {
-        numeros = CEP.substring(0, 9);
-        digitos = CEP.substring(9);
-        soma = 0;
-        for (i = 10; i > 1; i--)
-            soma += numeros.charAt(10 - i) * i;
-        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-        if (resultado != digitos.charAt(0))
-            return false;
-        numeros = CEP.substring(0, 10);
-        soma = 0;
-        for (i = 11; i > 1; i--)
-            soma += numeros.charAt(11 - i) * i;
-        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-        if (resultado != digitos.charAt(1))
-            return false;
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
 function valida_celular() {
     console.log("Passou pela funcao valida_celular()");
 
@@ -369,4 +332,12 @@ function clearInputs () {
     document.getElementById("cidade").value = "";
     document.getElementById("Instagram").value = "";
     document.getElementById("github").value = "";
+}
+
+function isURLValida(url) {
+    if(url.match(/\.(jpeg|jpg|gif|png)$/) != null){
+        return true;
+    } else {
+        return false;
+    }
 }

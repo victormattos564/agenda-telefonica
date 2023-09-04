@@ -11,35 +11,72 @@
 
 <body>
     <h1 id="title-page">Agenda Telefonica</h1>
-    <label for="nome"></label>
-    |<input type="text" id="nome" placeholder="Nome Completo" required>
 
-    <label for="tel"></label>
-    |<input type="tel" id="Tel" placeholder="Telefone Fixo" maxlength="11" required>
+    <div id="main-div">
 
-    <label for="celular"></label>
-    |<input type="number" id="celular" placeholder="Telefone Celular" maxlength="11" required>
+        <div id="user-form">
+            <label for="Nome"></label>
+            <input type="text" id="nome" placeholder="Nome Completo" required>
 
-    <label for="URL"></label>
-    |<input type="url" id="URL" placeholder="Url da foto" required>
+            <label for="tel"></label>
+            <input type="tel" id="tel" maxlength="11" placeholder="Telefone Fixo" required>
 
-    <label for="email"></label>
-    |<input type="date" id="email" placeholder="E-mail" required>
+            <label for="celular"></label>
+            <input type="celular" id="celular" maxlength="11" placeholder="Telefone Celular" required>
 
-    <label for="CEP"></label>
-    |<input type="text" id="CEP" placeholder="CEP" required>
+            <label for="URL"></label>
+            <input type="text" id="URL" maxlength="11" placeholder="URL da foto" required>
 
-    <label for="cidade"></label>
-    |<input type="text" id="cidade" placeholder="Cidade" required>
+            <label for="date"></label>
+            <input type="date" id="date" required>
 
-    <label for="Instagram"></label>
-    |<input type="text" id="Instagram" placeholder="@Instagram" required>
+            <label for="email"></label>
+            <input type="email" id="email" placeholder="E-mail" required>
 
-    <label for="github"></label>
-    |<input type="text" id="github" placeholder="@Github" required>
+            <label for="CEP"></label>
+            <input type="text" id="CEP" placeholder="CEP" required>
+
+            <label for="cidade"></label>
+            <input type="text" id="cidade" placeholder="Cidade" required>
+
+            <label for="Instagram"></label>
+            <input type="text" id="Instagram" placeholder="@Instagram" required>
+
+            <label for="github"></label>
+            <input type="text" id="github" placeholder="@Github" required>
 
 
-    <button>Adicionar Contato</button>
+            
+            
+            
+            <div id="div-errorMsg">
+                <p id="error-msg" class="hidden">Error</p>
+            </div>
+            <div id="div-successMsg">
+                <p id="success-msg" class="hidden">Sucesso</p>
+            </div>
+            <div id="div-button">
+                <button id="button-register" onclick="createUser()" type="button">Entrar na lista de espera</button>
+                <button id="button-register" onclick="showUsers()" type="button">Ver lista de espera</button>
+            </div>
+
+        </div>
+        <div id="result-div">
+    </div>
+
+    <div id="sub-div" class="hidden">
+        <div id="button-back">
+            <button id="button-register" onclick="showRegister()" type="button">Voltar</button>
+        </div>
+        <div id="div-count">
+            <p id="contador">Contador</p>
+        </div>
+        <div id="main-sub-div">
+            <div id="user-list">
+
+            </div>
+            <div id="result-div2">
+            </div>
 </body>
 
 </html>
