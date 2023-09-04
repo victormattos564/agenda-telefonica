@@ -7,7 +7,7 @@ class Agenda {
         this.email = email;
         this.CEP = CEP;
         this.cidade = cidade;
-        this.estado = estado;
+        this.Instagram = Instagram;
         this.github = github;
         this.age = this.calculateAge();
         this.zodiacSign = this.getZodiacSign();
@@ -54,14 +54,6 @@ class Agenda {
             return "Sagitário ♐";
         }
     }
-    isPossibleClient() {
-        const age = this.age;
-        console.log("Passou pelo isPossibleClient? da class Agenda");
-        if (age >= 18 && age <= 26) {
-            return "Sim ✅";
-        }
-        return "Não ❌";
-    }
 }
 
 class AllUsers {
@@ -69,4 +61,104 @@ class AllUsers {
         this.users = [];
         console.log("Passou pelo constructor da class AllUsers");
     }
+    add(user) {
+        console.log("Passou pelo add() da class AllUsers");
+
+        if (isAnyInputEmpty()) {
+            sendErrorMsg("Preencha todos os campos");
+        } else if (!valida_cpf(user.cpf)) {
+            sendErrorMsg("CPF inválido");
+        } else if (isAlreadyRegistered(user.cpf)) {
+            sendErrorMsg("CPF já cadastrado");
+        } else {
+            this.users.push(user);
+            successMsg("Parabéns, você entrou na lista de espera!");
+            clearInputs();
+        }
+    }
+    getAll() {
+        console.log("Passou pelo getAll() da class AllUsers");
+
+        return this.users;
+    }
+
+    countNumber() {
+        console.log("Passou pelo countNumber() da class AllUsers");
+
+        return this.users.length;
+    }
+}
+
+const allUsers = new AllUsers();
+console.log("Instanciou a class AllUsers");
+
+function createUser() {
+    console.log("Passou pela funcao createUser()");
+    const nome = document.getElementById("nome").value;
+    const tel = document.getElementById("tel").value;
+    const celular = document.getElementById("celular").value;
+    const URL = document.getElementById("URL").value;
+    const email = document.getElementById("email").value;
+    const CEP = document.getElementById("CEP").value;
+    const cidade = document.getElementById("cidade").value;
+    const Instagram = document.getElementById("Instagram").value;
+    const github = document.getElementById("github").value;
+
+}
+
+function clearInputs () {
+    console.log("Passou pela funcao clearInputs()");
+    document.getElementById("nome").value = "";
+    document.getElementById("tel").value = "";
+    document.getElementById("celular").value = "";
+    document.getElementById("URL").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("CEP").value = "";
+    document.getElementById("cidade").value = "";
+    document.getElementById("Instagram").value = "";
+    document.getElementById("github").value = "";
+    
+}
+
+function  showRegister() {
+    console.log("Passou pela funcao showRegister()");
+    document.getElementById("register").classList.add = ("hidden");
+    document.getElementById("list").classList.remove = ("hidden");
+    document.getElementById("about").classList.remove = ("hidden");
+    console.log("Passou pela funçao showRegiser()");
+}
+
+function dateinPTBR(params) {
+    console.log("Passou pela funcao dateinPTBR()");
+
+    let dateArray = date.split("-");
+    let datePTBR = dateArray[2] + "/" + dateArray[1] + "/" + dateArray[0];
+    return datePTBR;
+}
+function gerarLinkWhatsaap() {
+    let link = "https://api.whatsapp.com/send"
+    + telefone;
+    return link;
+}
+
+function formatedCEP(CEP) {
+    console.log("Passou pela funcao formatedCEP()");
+
+    let CEPArray = cpf.split("");
+    let CEPFormated = CEPArray[0] + CEPArray[1] + CEPArray[2]
+        + "." + CEPArray[3] + CEPArray[4] + CEPArray[5] + "."
+        + CEPArray[6] + CEPArray[7] + CEPArray[8] + "-" + CEPArray[9] + CEPArray[10];
+    return CEPFormated;
+}
+
+function formatedcelular(celular) {
+    console.log("Passou pela funcao formatedCellphone()");
+
+    let celularArray = celular.split("");
+    let celularFormated = "(" + celularArray[0] + celularArray[1] + ")"
+        + " " + celularArray[2] + celularArray[3] + celularArray[4]
+        + celularArray[5] + celularArray[6] + "-"
+        + celularArray[7] + celularArray[8]
+        + celularArray[9] + celularArray[10];
+    return celularFormated;
 }
