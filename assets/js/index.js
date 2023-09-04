@@ -1,5 +1,5 @@
 class Agenda {
-    constructor(nome,tel,celular,URL,email,CEP,cidade,estado,github) {
+    constructor(nome, tel, celular, URL, email, CEP, cidade, estado, github) {
         this.nome = nome;
         this.tel = tel;
         this.celular = celular;
@@ -19,7 +19,7 @@ class Agenda {
         let birthDate = new Date(this.dataNasc);
         let age = today.getFullYear() - birthDate.getFullYear();
         let m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {age--;};
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) { age--; };
         console.log("Passou pelo calculateAge() da class User");
         return age;
     }
@@ -106,7 +106,7 @@ function createUser() {
 
 }
 
-function clearInputs () {
+function clearInputs() {
     console.log("Passou pela funcao clearInputs()");
     document.getElementById("nome").value = "";
     document.getElementById("tel").value = "";
@@ -117,10 +117,10 @@ function clearInputs () {
     document.getElementById("cidade").value = "";
     document.getElementById("Instagram").value = "";
     document.getElementById("github").value = "";
-    
+
 }
 
-function  showRegister() {
+function showRegister() {
     console.log("Passou pela funcao showRegister()");
     document.getElementById("register").classList.add = ("hidden");
     document.getElementById("list").classList.remove = ("hidden");
@@ -137,7 +137,7 @@ function dateinPTBR(params) {
 }
 function gerarLinkWhatsaap() {
     let link = "https://api.whatsapp.com/send"
-    + telefone;
+        + telefone;
     return link;
 }
 
@@ -161,4 +161,212 @@ function formatedcelular(celular) {
         + celularArray[7] + celularArray[8]
         + celularArray[9] + celularArray[10];
     return celularFormated;
+}
+
+function valida_cep() {
+    console.log("Passou pela funcao valida_cep()");
+
+    var numeros, digitos, soma, i, resultado, digitos_iguais
+    digitos_iguais = 1;
+    if (CEP.length < 11)
+        return false;
+    for (i = 0; i < CEP.length - 1; i++)
+        if (CEP.charAt(i) != CEP.charAt(i + 1)) {
+            digitos_iguais = 0;
+            break;
+        }
+    if (!digitos_iguais) {
+        numeros = CEP.substring(0, 9);
+        digitos = CEP.substring(9);
+        soma = 0;
+        for (i = 10; i > 1; i--)
+            soma += numeros.charAt(10 - i) * i;
+        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        if (resultado != digitos.charAt(0))
+            return false;
+        numeros = CEP.substring(0, 10);
+        soma = 0;
+        for (i = 11; i > 1; i--)
+            soma += numeros.charAt(11 - i) * i;
+        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        if (resultado != digitos.charAt(1))
+            return false;
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function valida_celular() {
+    console.log("Passou pela funcao valida_celular()");
+
+    var numeros, digitos, soma, i, resultado, digitos_iguais
+    digitos_iguais = 1;
+    if (celular.length < 11)
+        return false;
+    for (i = 0; i < celular.length - 1; i++)
+        if (celular.charAt(i) != celular.charAt(i + 1)) {
+            digitos_iguais = 0;
+            break;
+        }
+    if (!digitos_iguais) {
+        numeros = celular.substring(0, 9);
+        digitos = celular.substring(9);
+        soma = 0;
+        for (i = 10; i > 1; i--)
+            soma += numeros.charAt(10 - i) * i;
+        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        if (resultado != digitos.charAt(0))
+            return false;
+        numeros = celular.substring(0, 10);
+        soma = 0;
+        for (i = 11; i > 1; i--)
+            soma += numeros.charAt(11 - i) * i;
+        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        if (resultado != digitos.charAt(1))
+            return false;
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function valida_tel() {
+    console.log("Passou pela funcao valida_tel()");
+
+    var numeros, digitos, soma, i, resultado, digitos_iguais
+    digitos_iguais = 1;
+    if (tel.length < 11)
+        return false;
+    for (i = 0; i < tel.length - 1; i++)
+        if (tel.charAt(i) != tel.charAt(i + 1)) {
+            digitos_iguais = 0;
+            break;
+        }
+    if (!digitos_iguais) {
+        numeros = tel.substring(0, 9);
+        digitos = tel.substring(9);
+        soma = 0;
+        for (i = 10; i > 1; i--)
+            soma += numeros.charAt(10 - i) * i;
+        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        if (resultado != digitos.charAt(0))
+            return false;
+        numeros = tel.substring(0, 10);
+        soma = 0;
+        for (i = 11; i > 1; i--)
+            soma += numeros.charAt(11 - i) * i;
+        resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+        if (resultado != digitos.charAt(1))
+            return false;
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function isAlreadyRegistered(CEP) {
+    console.log("Passou pela funcao isAlreadyRegistered()");
+
+    let users = allUsers.getAll();
+    let isRegistered = false
+    users.forEach((users) => {
+        if (users.CEP == CEP) {
+            isRegistered = true;
+        }
+    });
+    return isRegistered;
+}
+
+function showUsers() {
+    console.log("Passou pela funcao showUsers()");
+
+    if (allUsers.getAll().length == 0) {
+        sendErrorMsg("Nenhum usuário cadastrado");
+        return;
+    } else {
+        document.getElementById("sub-div").classList.remove("hidden")
+        document.getElementById("title-page").classList.add("hidden")
+        document.getElementById("main-div").classList.add("hidden")
+
+        console.log(allUsers.getAll());
+
+        const users = allUsers.getAll();
+
+        users.forEach((user) => {
+            html += `
+            <div class="list-eachUser">
+              <p><strong>Nome:</strong> ${user.nome}</p>
+              <p><strong>Telefone:</strong> ${user.tel}</p>
+              <p><strong>Celular:</strong> ${user.celular}</p>
+              <p><strong>URL:</strong> ${user.URL}</p>
+              <p><strong>Email:</strong> ${user.email}</p>
+              <p><strong>CEP:</strong> ${user.CEP}</p>
+              <p><strong>Cidade:</strong> ${user.cidade}</p>
+              <p><strong>Instagram:</strong> ${user.Instagram}</p>
+              <p><strong>GitHub:</strong> ${user.github}</p>
+              </div>
+              `;
+        });
+        document.getElementById("list").innerHTML = html;
+    }
+    const contador = allUsers.countNumber()
+    document.getElementById("contador").innerHTML = `Total: ${contador};`
+}
+
+function isAnyInputEmpty() {
+    console.log("Passou pela funcao isAnyInputEmpty()");
+
+    const nome = document.getElementById("nome").value;
+    const tel = document.getElementById("tel").value;
+    const celular = document.getElementById("celular").value;
+    const URL = document.getElementById("URL").value;
+    const email = document.getElementById("email").value;
+    const CEP = document.getElementById("CEP").value;
+    const cidade = document.getElementById("cidade").value;
+    const Instagram = document.getElementById("Instagram").value;
+    const github = document.getElementById("github").value;
+
+    if (nome == "" || tel == "" || celular == "" || URL == "" || email == "" || CEP == "" || cidade == "" || Instagram == "" || github == "") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function sendErrorMsg(msg) {
+    console.log("Passou pela funcao sendErrorMsg()");
+
+    document.getElementById("error-msg").innerHTML = msg;
+    document.getElementById("error-msg").classList.remove("hidden");
+    setTimeout(() => {
+        document.getElementById("error-msg").classList.add("hidden");
+    }, 2000);
+}
+
+function successMsg(msg) {
+    console.log("Passou pela funcao successMsg()");
+
+    document.getElementById("success-msg").innerHTML = msg;
+    document.getElementById("success-msg").classList.remove("hidden");
+    setTimeout(function() {
+        document.getElementById("success-msg").classList.add("hidden");
+    }, 2000);
+}
+
+function clearInputs () {
+    console.log("Passou pela funcao clearInputs()");
+
+    document.getElementById("nome").value = "";
+    document.getElementById("tel").value = "";
+    document.getElementById("celular").value = "";
+    document.getElementById("URL").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("CEP").value = "";
+    document.getElementById("cidade").value = "";
+    document.getElementById("Instagram").value = "";
+    document.getElementById("github").value = "";
 }
